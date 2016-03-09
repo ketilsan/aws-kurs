@@ -73,7 +73,7 @@ app.put('/users/:id', function(req, res) {
         }
         console.log("mysql connected");
       });
-      
+
     conn.query('INSER INTO USERS SET ?,?', user.username, user.password, function(err, res) {
       if(err) {
         throw err;
@@ -83,7 +83,7 @@ app.put('/users/:id', function(req, res) {
       conn.end(function(err) {
         console.log("mysql disconnected");
       })
-    }
+    });
 
     //---modify the appropriate user in the users dictionary---
     users[req.params.id].username = user.username;
