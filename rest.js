@@ -15,9 +15,8 @@ var mysql = require("mysql");
 var conn = mysql.createConnection({
     host: "mysqlinstance.cuac80xvmfcw.eu-west-1.rds.amazonaws.com",
     port: "3306",
-    user: "root",
-    password: "admin",
-    database: "password"
+    user: "admin",
+    password: "password"
 });
 
 conn.connect(function(err) {
