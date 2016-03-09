@@ -11,6 +11,27 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+var mysql = require("mysql");
+var conn = mysql.createConnection({
+    host: "mysqlinstance.cuac80xvmfcw.eu-west-1.rds.amazonaws.com",
+    port: "3306",
+    user: "root",
+    password: "admin",
+    database: "password"
+});
+
+conn.connect(function(err) {
+    if (err) {
+        console.log("Error connecting to mysql");
+        return;
+    }
+    console.log("mysql connected");
+  });
+
+  conn.end(function(err) {
+      console.log("mysql disconnected");
+  });
+
 //---sample list of users---
 var users =
 {
@@ -151,5 +172,5 @@ app.delete('/users/:id', function(req, res) {
     res.send(users);
 });
 
-app.listen(5000);
-console.log('Rest Service Listening on port 5000');
+app.listen(3000);
+console.log('Rest Service Listening on port 3000');
