@@ -11,26 +11,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-var mysql = require("mysql");
-var conn = mysql.createConnection({
-    host: "mysqlinstance.cuac80xvmfcw.eu-west-1.rds.amazonaws.com",
-    port: "3306",
-    user: "admin",
-    password: "password"
-});
-
-conn.connect(function(err) {
-    if (err) {
-        console.log("Error connecting to mysql", err);
-        return;
-    }
-    console.log("mysql connected");
-  });
-
-  conn.end(function(err) {
-      console.log("mysql disconnected");
-  });
-
 //---sample list of users---
 var users =
 {
@@ -75,6 +55,34 @@ app.put('/users/:id', function(req, res) {
     var user = {
         username: req.body.username,
         password: req.body.password
+    }
+
+    var mysql = require("mysql");
+    var conn = mysql.createConnection({
+        host: "mysqlinstance.cuac80xvmfcw.eu-west-1.rds.amazonaws.com",
+        port: "3306",
+        user: "admin",
+        password: "password",
+        database: "MysqlDatabase"
+    });
+
+    conn.connect(function(err) {
+        if (err) {
+            console.log("Error connecting to mysql", err);
+            return;
+        }
+        console.log("mysql connected");
+      });
+      
+    conn.query('INSER INTO USERS SET ?,?', user.username, user.password, function(err, res) {
+      if(err) {
+        throw err;
+      } else {
+        console.log("done!");
+      }
+      conn.end(function(err) {
+        console.log("mysql disconnected");
+      })
     }
 
     //---modify the appropriate user in the users dictionary---
