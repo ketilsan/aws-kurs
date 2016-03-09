@@ -15,7 +15,7 @@ http.createServer(
           "<link rel='stylesheet' type='text/css' href='mystyle.css'>" +
           "</head>" +
           "<title>nodeJs</title>" +
-          "<body><p>content of index.html here</p></body>"
+          "<body><p>content of index.html here</p></body>" +
           "</html>");
       } else {
         response.end("<html><title>nodeJs</title><body> Hello, nodeJs! </body></html>");
