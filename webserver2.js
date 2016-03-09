@@ -7,7 +7,6 @@ http.createServer(
       response.end('p {color:blue}');
     } else {
       response.writeHead(200, { 'Content-Type': 'text/html'});
-      response.end('<html><title>Node.js</title><body><h2>Hello, Node.JS!</body></html>');
       if(request.url == "/index.html") {
         response.end(
           "<html>" +
